@@ -1,130 +1,129 @@
-# Ditto
+# Ditto - AI-Powered Flask App Builder
 
-[![License](https://img.shields.io/github/license/yoheinakajima/ditto)](LICENSE)
+![Ditto Logo](https://path-to-your-logo-if-you-have-one.png)
 
-**Ditto** - *the simplest self-building coding agent*.
+Ditto is an innovative, AI-powered Flask application builder that revolutionizes the way developers create web applications. By leveraging advanced AI technology, Ditto allows users to generate complete, production-ready Flask applications from simple text descriptions.
 
-Ditto is a user-friendly tool that allows you to generate a multi-file Flask application from simple natural language descriptions using a no-code interface. By leveraging a simple LLM loop with a few tools, Ditto automates the coding process, (occasionally) turning your ideas into functional web applications (or at least trying and getting close).
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 ## Features
 
-- **Simple Natural Language Input**: Just describe the application you want to build in plain English.
-- **Automated Code Generation**: Generates routes, templates, and static files based on your description.
-- **Self-Building Agent**: Automatically plans and constructs the application without the need for manual coding.
-- **Modular Structure**: Organizes code into a clean, modular structure with separate directories for templates, static files, and routes.
+- **AI-Assisted App Generation**: Describe your app idea, and let Ditto's AI create a fully functional Flask application.
+- **User Authentication**: Secure user registration and login system.
+- **Project Management**: Create, view, and manage multiple projects.
+- **Collaboration**: Invite collaborators to your projects with customizable permission levels.
+- **Version Control**: Automatic versioning of your generated applications.
+- **Real-time Progress Tracking**: Monitor the AI's progress as it builds your application.
+- **File Management**: Create, edit, and view files within your projects.
+- **Error Handling and Logging**: Comprehensive error tracking and action logging for transparency and debugging.
 
 ## Getting Started
 
 ### Prerequisites
 
-- Python 3.7 or higher
-- `pip` package manager
+- Python 3.7+
+- pip
+- Virtual environment (recommended)
 
 ### Installation
 
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/yoheinakajima/ditto.git
+1. Clone the repository:
+   ```
+   git clone https://github.com/lalomorales22/ditto.git
    cd ditto
    ```
 
-2. **Create a Virtual Environment (Optional but Recommended)**
-
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows, use venv\Scripts\activate
+2. Create and activate a virtual environment:
+   ```
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
 
-3. **Install Dependencies**
-
-   ```bash
-   pip install litellm
+3. Install the required dependencies:
+   ```
+   pip install -r requirements.txt
    ```
 
-### Setting the `OPENAI_API_KEY`
+4. Set up environment variables:
+   Create a `.env` file in the project root and add the following:
+   ```
+   FLASK_APP=app.py
+   FLASK_ENV=development
+   SECRET_KEY=your_secret_key_here
+   LITELLM_MODEL=gpt-4o  # or your preferred model
+   ```
 
-To use Ditto, you'll need to set the `OPENAI_API_KEY` in your environment. Here are two options for doing that:
+5. Initialize the database:
+   ```
+   flask db upgrade
+   ```
 
-#### Option 1: Temporary Setup in Terminal
+6. Run the application:
+   ```
+   flask run
+   ```
 
-For macOS/Linux:
+   The application will be available at `http://localhost:5000`.
 
-```bash
-export OPENAI_API_KEY=your-openai-api-key
+## Usage
+
+1. Register for an account or log in if you already have one.
+2. Create a new project from your dashboard.
+3. In the project view, click on "Generate App" and describe the Flask application you want to create.
+4. Monitor the progress as Ditto's AI builds your application.
+5. Once complete, you can view, edit, and manage the generated files.
+6. Invite collaborators to work on your project if desired.
+
+## Project Structure
+
+```
+ditto/
+├── app.py
+├── config.py
+├── requirements.txt
+├── .env
+├── .gitignore
+├── README.md
+├── static/
+│   ├── css/
+│   └── js/
+├── templates/
+├── routes/
+└── projects/
 ```
 
-For Windows (Command Prompt):
+## Contributing
 
-```cmd
-set OPENAI_API_KEY=your-openai-api-key
-```
+We welcome contributions to Ditto! Please follow these steps to contribute:
 
-For Windows (PowerShell):
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature-branch-name`.
+3. Make your changes and commit them: `git commit -m 'Add some feature'`.
+4. Push to the branch: `git push origin feature-branch-name`.
+5. Submit a pull request.
 
-```powershell
-$env:OPENAI_API_KEY="your-openai-api-key"
-```
-
-Run the application:
-
-```bash
-python main.py
-```
-
-#### Option 2: Persistent Setup using a `.env` File (Recommended)
-
-1. Install the `python-dotenv` package to load environment variables from a `.env` file:
-
-   ```bash
-   pip install python-dotenv
-   ```
-
-2. Create a `.env` file in the root of the project directory and add your API key:
-
-   ```bash
-   OPENAI_API_KEY=your-openai-api-key
-   ```
-
-3. Run the application as usual:
-
-   ```bash
-   python main.py
-   ```
-
-### Usage
-
-1. **Run the Application**
-
-   ```bash
-   python main.py
-   ```
-
-2. **Access the Web Interface**
-
-   Open your web browser and navigate to `http://localhost:8080`.
-
-3. **Describe Your Application**
-
-   On the home page, you'll find a form where you can describe the Flask application you want to create.
-
-4. **Monitor Progress**
-
-   After submitting your description, the application will process your request. You can monitor the progress in real-time.
-
-5. **View the Generated Application**
-
-   Once the process is complete, you can rerun the Flask app to interact with your newly generated Flask application.
-
-```bash
-python main.py
-```
-
-
-## Contribution
-
-This is a quick exploration, so I have no plans to work on this further. Contributions are welcome, especially if they are awesome, but ping me on X/Twitter because I don't check PRs often. I'm basically going to try to bake this into the new [BabyAGI framework](https://github.com/yoheinakajima/babyagi), but give it the ability to store and save functions from the database. If this sounds like a fun challenge and you get it working, definitely let me know :)
+Please make sure to update tests as appropriate and adhere to the project's coding standards.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+Lalo Morales - [@lalomorales22](https://github.com/lalomorales22)
+
+Project Link: [https://github.com/lalomorales22/ditto](https://github.com/lalomorales22/ditto)
+
+---
+
+Ditto - Transform your ideas into Flask applications with the power of AI!
